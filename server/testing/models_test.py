@@ -119,4 +119,4 @@ class TestPost:
         with app.app_context():
             content_string = "A" * 260
             with pytest.raises(ValueError):
-                post = Post(title='Why I love programming.', content=content_string, category='Fiction')
+                post = Post(title='Unbelievable: Why I love programming.', content=content_string, category='Fiction')
