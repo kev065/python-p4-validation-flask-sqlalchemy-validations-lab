@@ -1,4 +1,5 @@
 import pytest
+import unittest
 from sqlalchemy.exc import IntegrityError
 from app import app
 from models import db, Author, Post
@@ -9,8 +10,14 @@ from faker import Faker
 LOGGER = logging.getLogger(__name__)
 
 
-class TestAuthor:
+class TestAuthor(unittest.TestCase):
     '''Class Author in models.py'''
+
+    def setUp(self):
+        '''Clear the database before each test'''
+        with app.app_context():
+            db.session.query(Author).delete()
+            db.session.commit()
 
     def test_requires_name(self):
         '''requires each record to have a name.'''
